@@ -1,13 +1,102 @@
-body {
+/* googlefonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Rubik:wght@400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
+:root{
+  /* les couleur */
+  --note-color: rgb(255, 255, 144);
+  --newnote-color: rgb(116, 116, 255);
+  --body-color: hsl(258,60%,98%);
+}
+*{
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0; 
+  font-family: 'roboto', Courier, monospace;
+ 
+}
+.container{
+  max-width: 960px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px; padding-left: 15px;
+ 
+
+}
+.notes_list{
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  
+}
+.note{
+  background-color: var(--note-color);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between  ;
+  white-space: pre-wrap ;
+  overflow-wrap: break-word;
+  
+}
+.note.new{
+  background-color: var(--newnote-color);
+  
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+textarea{
+  background-color: var(--newnote-color);
+  border: none;
+  resize: none;
+  white-space: pre-wrap ;
+  
+}
+textarea:focus{
+  outline: none;
+  
+}
+.save{
+  background-color: grey;
+  border: none;
+  border-radius: 2rem;
+  padding: 5px 10px;
+  transition: .3s;
+}
+.save:hover{
+  background-color: rgb(167, 167, 167);
+  cursor: pointer;
+  padding: 5px 15px;
+  
+}
+
+.notefooter{
+  display: flex;
+  align-items: center;
+  justify-content: space-between  ;
+}
+.delete-icon{
+  font-size: larger;
+  cursor: pointer;
+  transition: .2s;
+}
+.delete-icon:hover{
+  color: rgb(255, 0, 0);
+}
+
+.searchbar{
+  display: flex;
+  align-items: center;
+  background-color: rgb(232, 232, 232);
+  border-radius: 1rem;
+  padding: 5px;
+  margin-bottom: 2rem;
+}
+.searchbar input{
+  border: none;
+  background-color: rgb(232, 232, 232);
+  
+}
+.searchbar input:focus{
+  outline: none;
+ 
+  
 }

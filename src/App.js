@@ -42,10 +42,12 @@ function App() {
       const newNotes = notes.filter((note) => note.id !== id);
       SetNotes(newNotes);
     }
+
+    const [Searchtext, SetSearchtext] = useState('');
   return (
     <div className='container'>
-      <Searchbar/>
-      <Noteslist  notes={notes}
+      <Searchbar handelSearchNote={SetSearchtext}/>
+      <Noteslist  notes={notes.filter((note)=>note.text.toLowerCase().includes(Searchtext))}
                   handeladdnote={addNote}
                   handelDeleteNote={deleteNote}/>
     </div>

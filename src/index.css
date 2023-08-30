@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Rubik:wght@400;500;600;700&family=Ubuntu:wght@300;400;500;700&display=swap');
 :root{
   /* les couleur */
-  --note-color: rgb(255, 255, 144);
-  --newnote-color: rgb(116, 116, 255);
-  --body-color: hsl(258,60%,98%);
+  --note-color: #F2EAD3;
+  --newnote-color: #3F2305;
+  --body-color: #F5F5F5;
 }
 *{
   margin: 0;
@@ -13,10 +13,12 @@
  
 }
 .container{
-  max-width: 960px;
+  
+  min-width: 960px;
   margin-right: auto;
   margin-left: auto;
   padding-right: 15px; padding-left: 15px;
+  
  
 
 }
@@ -54,6 +56,11 @@ textarea:focus{
   outline: none;
   
 }
+textarea:focus{
+  outline: none;
+  color: gray;
+  
+}
 .save{
   background-color: grey;
   border: none;
@@ -69,6 +76,7 @@ textarea:focus{
 }
 
 .notefooter{
+  color: grey;
   display: flex;
   align-items: center;
   justify-content: space-between  ;
@@ -85,12 +93,12 @@ textarea:focus{
 .searchbar {
   display: flex;
   align-items: center;
-  background-color: rgb(232, 232, 232);
+  background-color: var(--note-color);
   border-radius: 1rem;
   padding: 5px;
   margin-bottom: 2rem;
   border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
 }
 
 .searchbar input {
@@ -110,4 +118,31 @@ textarea:focus{
 .search-icon {
   margin-right: 10px;
   color: #888;
+}
+nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 12vh;
+  background-color: #F2EAD3;
+  padding:  0px 15px 0px 15px;
+  margin-bottom: 1rem;
+}
+nav a{
+  text-decoration: none;
+  color: black;
+}
+nav .rigthbar a{
+  margin-right: 10px;
+}
+nav .rigthbar button{
+  margin-left: 10px;
+}
+
+.darkmode{
+  background-color: black;
+  transition: .2s;
+}
+.darkmode h1{
+  color: white;
 }

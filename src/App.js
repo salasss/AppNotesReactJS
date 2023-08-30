@@ -1,29 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import{nanoid} from 'nanoid';
 import Noteslist from './components/Noteslist';
 import Searchbar from './components/Searchbar';
+import Navbar from './components/Navbar';
 function App() {
-  const [notes,SetNotes] = useState([
-    {
-      id: nanoid(),
-      text:"ceci est la 1ere note",
-      date:"12/12/2023"
-    },
-    {
-      id: nanoid(),
-      text:"ceci est la 2nd note",
-      date:"4/04/2023"
-    },
-    {
-      id: nanoid(),
-      text:"ceci est la 3eme note",
-      date:"02/10/2023"
-    },
-    {
-      id: nanoid(),
-      text:"ceci est la 4eme note",
-      date:"22/10/2023"
-    }]);
+  const [notes,SetNotes] = useState([]);
 
 
 
@@ -44,12 +25,41 @@ function App() {
     }
 
     const [Searchtext, SetSearchtext] = useState('');
+
+    const [darkMode, setDarkMode] = useState(false);
+
+    
+    useEffect(() => {
+      console.log('Retrieving notes from local storage');
+      try {
+        const savedNotesJSON = localStorage.getItem('react-note-app-data');
+        if (savedNotesJSON) {
+          const savedNotes = JSON.parse(savedNotesJSON);
+          console.log('Saved notes:', savedNotes);
+          SetNotes((prevNotes) => {
+           
+            return prevNotes.length === 0 ? savedNotes : prevNotes;
+          });
+        }
+      } catch (error) {
+        console.error('Error parsing saved notes:', error);
+      }
+    }, []);
+    
+    
+
+    useEffect(() =>{
+      localStorage.setItem('react-note-app-data',JSON.stringify(notes))
+    },[notes]);
   return (
-    <div className='container'>
-      <Searchbar handelSearchNote={SetSearchtext}/>
-      <Noteslist  notes={notes.filter((note)=>note.text.toLowerCase().includes(Searchtext))}
-                  handeladdnote={addNote}
-                  handelDeleteNote={deleteNote}/>
+    <div className={`app ${darkMode ? 'darkmode' : ''}`}>
+      <Navbar handelDarkMode={setDarkMode} />
+      <div className='container'>
+        <Searchbar handelSearchNote={SetSearchtext}/>
+        <Noteslist  notes={notes.filter((note)=>note.text.toLowerCase().includes(Searchtext))}
+                    handeladdnote={addNote}
+                    handelDeleteNote={deleteNote}/>
+      </div>
     </div>
   )
 }
